@@ -10,5 +10,21 @@
   {
     "caption": "Pretty EDN: Validate",
     "command": "pretty_edn_validate"
+  },
+  {
+    "caption": "Pretty EDN: to JSON minified",
+    "command": "pretty_edn_to_json_minified"
+  },
+  {
+    "caption": "Pretty EDN: to JSON pretty",
+    "command": "pretty_edn_to_json_pretty"
+  },
+  {
+    "caption": "Pretty EDN: from JSON",
+    "command": "pretty_edn_from_json"
+  },
+  {
+    "caption": "Pretty EDN: from JSON keywordized",
+    "command": "pretty_edn_from_json_keywordized"
   }
 ]
