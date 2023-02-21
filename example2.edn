@@ -1,0 +1,2 @@
+{:paths ["src"] 
+ :deps {:x 1, :this-is-a-very-long-keyword-indeed/this-is-a-very-long-keyword-indeed {:aaa 2, :mvn/version "2020.09.09" :b 3 :c "ccccccccccccccccccccccccccccccccccccccccccc"}, :yyy 4}} 

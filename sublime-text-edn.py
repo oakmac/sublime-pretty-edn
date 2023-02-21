@@ -1,35 +1,37 @@
+import os
+import pathlib
+import shutil
 import sublime
 import sublime_plugin
-import shutil
-import os
 import subprocess
 
 class PrettyEdnFormat(sublime_plugin.TextCommand):
     def run(self, edit):
-        whole_view_region = sublime.Region(0, self.view.size())
-        all_text = self.view.substr(whole_view_region)
+        whole_region = sublime.Region(0, self.view.size())
+        all_text = self.view.substr(whole_region)
 
-        # TODO: allow them to set babashka path via setting
+        ## TODO: allow them to set babashka path via setting
         bb_exists = shutil.which("bb")
-        jet_exists = shutil.which("jet")
 
-        if not jet_exists:
-        	print("jet not found!")
+        ## TODO: What to do here? Update status bar?
+        if not bb_exists:
+        	print("babashka (bb) not found!")
         	return
 
-        #print("do something now")
+        # directory of the script being run:
+        plugin_dir = pathlib.Path(__file__).parent.absolute()
+        format_script = os.path.join(plugin_dir, "scripts/format_edn.clj")
 
-        # subprocess.run(args, *, stdin=None, input=None, stdout=None, stderr=None, capture_output=False, shell=False, cwd=None, timeout=None, check=False, encoding=None, errors=None, text=None, env=None, universal_newlines=None, **other_popen_kwargs)
-        result = subprocess.run(
-            ["jet", "--to", "edn", all_text], capture_output=True, text=True
-        )
-        print("stdout:", result.stdout)
-        print("stderr:", result.stderr)
+        ## run ./scripts/format_edn.clj
+        result = subprocess.run([format_script], input=all_text, capture_output=True, text=True)
 
-        ## Possibles:
-        ## - os.system('bb foo')
-        ## - os.spawn
-        ## - subprocess.run
+        if result.stderr != "":
+        	## TODO: print to status bar here?
+        	print("Unable to format. Invalid EDN.")
+        	return
+
+        ## set the buffer with the pretty-printed result
+        self.view.replace(edit, whole_region, result.stdout)
 
 class PrettyEdnMinify(sublime_plugin.TextCommand):
     def run(self, edit):
@@ -45,7 +47,7 @@ class PrettyEdnMinify(sublime_plugin.TextCommand):
 
 class PrettyEdnValidate(sublime_plugin.TextCommand):
     def run(self, edit):
-        whole_view_region = sublime.Region(0, self.view.size())
-        all_text = self.view.substr(whole_view_region)
+        whole_region = sublime.Region(0, self.view.size())
+        all_text = self.view.substr(whole_region)
         print(all_text)
-        self.view.replace(edit, whole_view_region, all_text + "zzz")
+        self.view.replace(edit, whole_region, all_text + "zzz")
