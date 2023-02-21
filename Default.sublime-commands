@@ -1,0 +1,14 @@
+[
+  {
+    "caption": "Pretty EDN: Format EDN",
+    "command": "pretty_edn_format"
+  },
+  {
+    "caption": "Pretty EDN: Minify EDN",
+    "command": "pretty_edn_minify"
+  },
+  {
+    "caption": "Pretty EDN: Validate",
+    "command": "pretty_edn_validate"
+  }
+]
