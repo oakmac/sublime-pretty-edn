@@ -41,7 +41,7 @@ ln -s ~/sublime-text-edn ~/Library/Application\ Support/Sublime\ Text/Packages/
 - config to use fipp instead of clojure.pprint
 - to YAML
 - keywordize-keys / unkeywordize-keys
-- Use [Tonsky's Python Clojure parser](https://github.com/tonsky/Clojure-Sublimed/blob/master/cs_parser.py) and remove dependnecy on babashka
+- Use [Tonsky's Python Clojure parser](https://github.com/tonsky/Clojure-Sublimed/blob/master/cs_parser.py) and remove dependency on babashka
 
 ## License
 
