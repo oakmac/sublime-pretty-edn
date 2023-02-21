@@ -15,8 +15,8 @@ class PrettyEdnFormat(sublime_plugin.TextCommand):
 
         ## TODO: What to do here? Update status bar?
         if not bb_exists:
-        	print("babashka (bb) not found!")
-        	return
+            print("babashka (bb) not found!")
+            return
 
         # directory of the script being run:
         plugin_dir = pathlib.Path(__file__).parent.absolute()
@@ -26,24 +26,38 @@ class PrettyEdnFormat(sublime_plugin.TextCommand):
         result = subprocess.run([format_script], input=all_text, capture_output=True, text=True)
 
         if result.stderr != "":
-        	## TODO: print to status bar here?
-        	print("Unable to format. Invalid EDN.")
-        	return
-
-        ## set the buffer with the pretty-printed result
-        self.view.replace(edit, whole_region, result.stdout)
+            ## TODO: print to status bar here?
+            print("Unable to format. Invalid EDN.")
+        else:
+            ## set the buffer with the pretty-printed result
+            self.view.replace(edit, whole_region, result.stdout)
 
 class PrettyEdnMinify(sublime_plugin.TextCommand):
     def run(self, edit):
-        print("FIXME: pretty EDN minify")
-        one = shutil.which("cat")
-        two = shutil.which("bb")
+        whole_region = sublime.Region(0, self.view.size())
+        all_text = self.view.substr(whole_region)
 
-        if one:
-        	print("yes to one")
+        ## TODO: allow them to set babashka path via setting
+        bb_exists = shutil.which("bb")
 
-        if two:
-        	print("yes to two")
+        ## TODO: What to do here? Update status bar?
+        if not bb_exists:
+            print("babashka (bb) not found!")
+            return
+
+        # directory of the script being run:
+        plugin_dir = pathlib.Path(__file__).parent.absolute()
+        format_script = os.path.join(plugin_dir, "scripts/minify_edn.clj")
+
+        ## run ./scripts/format_edn.clj
+        result = subprocess.run([format_script], input=all_text, capture_output=True, text=True)
+
+        if result.stderr != "":
+            ## TODO: print to status bar here?
+            print("Unable to minify. Invalid EDN.")
+        else:
+            ## set the buffer with the pretty-printed result
+            self.view.replace(edit, whole_region, result.stdout)
 
 class PrettyEdnValidate(sublime_plugin.TextCommand):
     def run(self, edit):
