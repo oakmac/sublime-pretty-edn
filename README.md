@@ -1,19 +1,26 @@
 # Sublime Text EDN
 
-Pretty print, validate, and minify EDN files from within Sublime Text.
+Pretty print, minify, and validate EDN files from within Sublime Text.
 
-## How it works
+Requires [babashka] to be installed (ie: `bb`).
 
-- Require [jet](https://github.com/borkdude/jet/) to be installed
-- Optionally fall back to just babashka?
-- Shell out to nodejs
-- Use Tonsky's Python Clojure parser from Python directly?
+[babashka]:https://babashka.org/
+
+## Usage
+
+FIXME: write this section
+
+Commands available:
+
+- Pretty EDN: Format
+- Pretty EDN: Minify
+- Pretty EDN: Validate
 
 ## Installation
 
 ### Package Control
 
-FIXME: write this
+FIXME: upload to Package Control and write this section
 
 ### Linux / OSX
 
@@ -25,11 +32,15 @@ git clone git@github.com:oakmac/sublime-text-edn.git
 ln -s ~/sublime-text-edn ~/Library/Application\ Support/Sublime\ Text/Packages/
 ```
 
-## Development
+## TODO / Future Ideas
 
-```sh
-
-```
+- setting to allow location of `bb`
+- config options for spacing for formatting
+- config to use fipp instead of clojure.pprint
+- to JSON
+- to YAML
+- keywordize-keys / unkeywordize-keys
+- Use [Tonsky's Python Clojure parser](https://github.com/tonsky/Clojure-Sublimed/blob/master/cs_parser.py) and remove dependnecy on babashka
 
 ## License
 

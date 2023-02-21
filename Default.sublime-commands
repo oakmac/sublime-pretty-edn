@@ -1,10 +1,10 @@
 [
   {
-    "caption": "Pretty EDN: Format EDN",
+    "caption": "Pretty EDN: Format",
     "command": "pretty_edn_format"
   },
   {
-    "caption": "Pretty EDN: Minify EDN",
+    "caption": "Pretty EDN: Minify",
     "command": "pretty_edn_minify"
   },
   {
