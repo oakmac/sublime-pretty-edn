@@ -1,3 +1,11 @@
+# Sublime Text EDN
+# v0.1.0
+# https://github.com/oakmac/sublime-text-edn
+#
+# Copyright (c) 2023, Chris Oakman
+# Released under the ISC license
+# https://github.com/oakmac/sublime-text-edn/blob/master/LICENSE.md
+
 import os
 import pathlib
 import shutil
@@ -5,80 +13,63 @@ import sublime
 import sublime_plugin
 import subprocess
 
+# TODO:
+# - on plugin load, check for existence of "bb" and warn otherwise
+
+def check_for_bb():
+    bb_exists = shutil.which('bb2')
+    if bb_exists:
+        return True
+    else:
+        sublime.status_message('Could not find babashka (bb). Is it installed?')
+        return False
+
 class PrettyEdnFormat(sublime_plugin.TextCommand):
     def run(self, edit):
-        whole_region = sublime.Region(0, self.view.size())
-        all_text = self.view.substr(whole_region)
+        if check_for_bb():
+            whole_region = sublime.Region(0, self.view.size())
+            all_text = self.view.substr(whole_region)
 
-        ## TODO: allow them to set babashka path via setting
-        bb_exists = shutil.which("bb")
+            plugin_dir = pathlib.Path(__file__).parent.absolute()
+            format_script = os.path.join(plugin_dir, "scripts/format_edn.clj")
+            result = subprocess.run([format_script], input=all_text, capture_output=True, text=True)
 
-        ## TODO: What to do here? Update status bar?
-        if not bb_exists:
-            print("babashka (bb) not found!")
-            return
-
-        # directory of the script being run:
-        plugin_dir = pathlib.Path(__file__).parent.absolute()
-        format_script = os.path.join(plugin_dir, "scripts/format_edn.clj")
-
-        ## run ./scripts/format_edn.clj
-        result = subprocess.run([format_script], input=all_text, capture_output=True, text=True)
-
-        if result.stderr != "":
-            sublime.status_message('Unable to format. Invalid EDN 👎')
-        else:
-            ## set the buffer with the pretty-printed result
-            self.view.replace(edit, whole_region, result.stdout)
-            sublime.status_message('EDN formatted')
+            if result.stderr != "":
+                sublime.status_message('Unable to format. Invalid EDN 👎')
+            else:
+                ## set the buffer with the pretty-printed result
+                self.view.replace(edit, whole_region, result.stdout)
+                sublime.status_message('EDN formatted')
 
 class PrettyEdnMinify(sublime_plugin.TextCommand):
     def run(self, edit):
-        whole_region = sublime.Region(0, self.view.size())
-        all_text = self.view.substr(whole_region)
+        if check_for_bb():
+            whole_region = sublime.Region(0, self.view.size())
+            all_text = self.view.substr(whole_region)
 
-        ## TODO: allow them to set babashka path via setting
-        bb_exists = shutil.which("bb")
+            plugin_dir = pathlib.Path(__file__).parent.absolute()
+            format_script = os.path.join(plugin_dir, "scripts/minify_edn.clj")
+            result = subprocess.run([format_script], input=all_text, capture_output=True, text=True)
 
-        ## TODO: What to do here? Update status bar?
-        if not bb_exists:
-            print("babashka (bb) not found!")
-            return
-
-        # directory of the script being run:
-        plugin_dir = pathlib.Path(__file__).parent.absolute()
-        format_script = os.path.join(plugin_dir, "scripts/minify_edn.clj")
-
-        ## run ./scripts/format_edn.clj
-        result = subprocess.run([format_script], input=all_text, capture_output=True, text=True)
-
-        if result.stderr != "":
-            sublime.status_message('Unable to minify. Invalid EDN 👎')
-        else:
-            ## set the buffer with the pretty-printed result
-            self.view.replace(edit, whole_region, result.stdout)
-            sublime.status_message('EDN minified')
+            if result.stderr != "":
+                sublime.status_message('Unable to minify. Invalid EDN 👎')
+            else:
+                ## set the buffer with the pretty-printed result
+                self.view.replace(edit, whole_region, result.stdout)
+                sublime.status_message('EDN minified')
 
 class PrettyEdnValidate(sublime_plugin.TextCommand):
     def run(self, edit):
-        whole_region = sublime.Region(0, self.view.size())
-        all_text = self.view.substr(whole_region)
+        if check_for_bb():
+            whole_region = sublime.Region(0, self.view.size())
+            all_text = self.view.substr(whole_region)
 
-        ## TODO: allow them to set babashka path via setting
-        bb_exists = shutil.which("bb")
+            plugin_dir = pathlib.Path(__file__).parent.absolute()
+            ## NOTE: the minify script doubles as the validate script
+            format_script = os.path.join(plugin_dir, "scripts/minify_edn.clj")
+            result = subprocess.run([format_script], input=all_text, capture_output=True, text=True)
 
-        ## TODO: What to do here? Update status bar?
-        if not bb_exists:
-            print("babashka (bb) not found!")
-            return
-
-        # directory of the script being run:
-        plugin_dir = pathlib.Path(__file__).parent.absolute()
-        format_script = os.path.join(plugin_dir, "scripts/minify_edn.clj")
-
-        result = subprocess.run([format_script], input=all_text, capture_output=True, text=True)
-
-        if result.stderr != "":
-            sublime.status_message('Invalid EDN 👎')
-        else:
-            sublime.status_message('Invalid EDN 👍')
+            if result.stderr != "":
+                sublime.status_message('Invalid EDN 👎')
+            else:
+                sublime.status_message('Invalid EDN 👍')
