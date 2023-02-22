@@ -36,12 +36,12 @@ ln -s ~/sublime-text-edn ~/Library/Application\ Support/Sublime\ Text/Packages/
 
 ## TODO / Future Ideas
 
-- setting to allow location of `bb`
+- setting to allow location of `bb` ([Issue #3](https://github.com/oakmac/sublime-pretty-edn/issues/3))
+- add "to YAML" support ([Issue #4](https://github.com/oakmac/sublime-pretty-edn/issues/4))
 - config options for spacing for formatting
 - config to use fipp instead of clojure.pprint
-- to YAML
-- keywordize-keys / unkeywordize-keys
-- Use [Tonsky's Python Clojure parser](https://github.com/tonsky/Clojure-Sublimed/blob/master/cs_parser.py) and remove dependency on babashka
+- option to keywordize-keys / unkeywordize-keys
+- Use [Tonsky's Python Clojure parser](https://github.com/tonsky/Clojure-Sublimed/blob/master/cs_parser.py) and remove dependency on babashka?
 
 ## License
 
