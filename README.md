@@ -1,4 +1,4 @@
-# Sublime Text EDN
+# Sublime Pretty EDN
 
 Pretty print, minify, and validate EDN files from within Sublime Text.
 
@@ -30,8 +30,8 @@ You can symlink this package repo to the Sublime Text Packages directory:
 
 ```
 cd ~
-git clone git@github.com:oakmac/sublime-text-edn.git
-ln -s ~/sublime-text-edn ~/Library/Application\ Support/Sublime\ Text/Packages/
+git clone git@github.com:oakmac/sublime-pretty-edn.git
+ln -s ~/sublime-pretty-edn ~/Library/Application\ Support/Sublime\ Text/Packages/
 ```
 
 ## TODO / Future Ideas

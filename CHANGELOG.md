@@ -15,5 +15,5 @@ All notable changes to this project will be documented in this file.
 - Pretty EDN: from JSON
 - Pretty EDN: from JSON keywordized
 
-[Unreleased]: https://github.com/oakmac/sublime-text-edn/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/oakmac/sublime-text-edn/releases/tag/v0.1.0
+[Unreleased]: https://github.com/oakmac/sublime-pretty-edn/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/oakmac/sublime-pretty-edn/releases/tag/v0.1.0
