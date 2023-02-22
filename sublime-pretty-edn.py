@@ -1,10 +1,10 @@
-# Sublime Text EDN
-# v0.1.0
-# https://github.com/oakmac/sublime-text-edn
+# Sublime Pretty EDN
+# v0.2.0
+# https://github.com/oakmac/sublime-pretty-edn
 #
 # Copyright (c) 2023, Chris Oakman
 # Released under the ISC license
-# https://github.com/oakmac/sublime-text-edn/blob/master/LICENSE.md
+# https://github.com/oakmac/sublime-pretty-edn/blob/master/LICENSE.md
 
 import os
 import pathlib
