@@ -15,6 +15,7 @@ import subprocess
 
 # TODO:
 # - on plugin load, check for existence of "bb" and warn if not found
+# - the babashka scripts could probably be combined (could even be just one script)
 
 def check_for_bb():
     bb_exists = shutil.which('bb')
@@ -75,7 +76,7 @@ class PrettyEdnValidate(sublime_plugin.TextCommand):
             if result.stderr != "":
                 sublime.status_message('Invalid EDN 👎')
             else:
-                sublime.status_message('Invalid EDN 👍')
+                sublime.status_message('Valid EDN 👍')
 
 
 class PrettyEdnToJsonMinified(sublime_plugin.TextCommand):
