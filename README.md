@@ -22,7 +22,7 @@ Commands available:
 
 ### Package Control
 
-FIXME: upload to Package Control and write this section
+> Pending merge of [PR-8697](https://github.com/wbond/package_control_channel/pull/8697)
 
 ### Linux / OSX
 
