@@ -22,7 +22,15 @@ Commands available:
 
 ### Package Control
 
-> Pending merge of [PR-8697](https://github.com/wbond/package_control_channel/pull/8697)
+[Pretty EDN](https://packagecontrol.io/packages/Pretty%20EDN) is available via the [Package Control](https://packagecontrol.io/) plugin:
+
+1. In Sublime Text, open the Command Palette by typing <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>p</kbd>
+   (<kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>p</kbd> on Mac)
+2. Type `install` and select `Package Control: Install Package`
+3. A text prompt should appear shortly after Package Control loads a list of
+   packages from the Internet.
+4. Type `pretty edn` and press <kbd>Enter</kbd>
+5. That's it! Pretty EDN is now installed.
 
 ### Linux / OSX
 
